@@ -5,6 +5,7 @@ const path = require('path');
 const CryptoJs = require('crypto-js');
 const dotenv = require('dotenv');
 const userRoute = require('./routes/auth.js');
+const indexRoute = require('./routes/index.js');
 
 dotenv.config();
 
@@ -30,10 +31,7 @@ const User = mongoose.model('User', {username: String, password: String});
 //route to login
 app.use('/user', userRoute);
 
-//gets index when requests to root
-app.get('/', (req,res) => {
-    res.sendFile(path.join(__dirname, './src/index.html'));
-});
+app.use('/', indexRoute);
 
 
 app.listen(PORT || 3000, () => {
