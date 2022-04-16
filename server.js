@@ -1,45 +1,43 @@
-const express = require('express')
-const bodyParser = require('body-parser')
-const mongoose = require('mongoose')
-const path = require('path')
-const PORT = 3000
+const express = require('express');
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+const path = require('path');
+const CryptoJs = require('crypto-js');
+const dotenv = require('dotenv');
+const userRoute = require('./routes/auth.js');
 
-const app = express()
-app.use( bodyParser.json() )
-app.use( bodyParser.urlencoded({extended: true}))
+dotenv.config();
 
-//connect to database
-mongoose.connect('mongodb+srv://prlcc:THogbnQu0a6Ol8CM@cluster0.7t62u.mongodb.net/ProgettoNode?retryWrites=true&w=majority')
+const PORT = process.env.PORT;
 
-const User = mongoose.model('User', {username: String, password: String})
+const app = express();
+app.use( bodyParser.json() );
+app.use( bodyParser.urlencoded({extended: true}));
+//app.use(express.json) //parse json inside http body requests //express 4.16> includes this by default
+//app.use(express.urlencoded({ extended: true }));
 
+
+//database connection
+mongoose
+.connect(process.env.MONGO_URL)
+.then(() => console.log('Database connected!'))
+.catch((err) => {
+    console.log(err);
+});
+
+const User = mongoose.model('User', {username: String, password: String});
+
+//route to login
+app.use('/user', userRoute);
+
+//gets index when requests to root
 app.get('/', (req,res) => {
-    res.sendFile(path.join(__dirname, '/index.html'))
-})
-
-app.get('/login', (req,res) => {
-    res.sendFile(path.join(__dirname, '/login.html'))
-})
-
-//autenticazione dell'utente
-app.post('/login', async (req,res) => {
-    const username = req.body.username
-    const password = req.body.password
-
-    const users = await User.find({username, password})
-
-    //controllo dei dati
-    if(users.length > 0) {
-        res.sendFile(path.join(__dirname, '/merce.html'))
-    }else {
-        res.sendFile(path.join(__dirname, '/errore.html'))
-    }
-})
+    res.sendFile(path.join(__dirname, './src/index.html'));
+});
 
 
-
-app.listen(PORT, () => {
-    console.log(`Listening on port ${PORT}`)
-})
+app.listen(PORT || 3000, () => {
+    console.log(`Server is running on http://localhost:${PORT}`);
+});
 
 
