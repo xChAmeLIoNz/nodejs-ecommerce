@@ -1,29 +1,34 @@
 const router = require('express').Router();
 const path = require('path');
-const { User } = require('../server');
+const User = require('../models/User');
+const CryptoJS = require('crypto-js');
+//const bodyParser = require('body-parser');
 
-router.get('/login', (req,res) => {
-    res.sendFile(path.join(__dirname, '../src', '/login.html'));
-});
+//router.use(bodyParser.json());
 
-//autenticazione dell'utente
-router.post('/login', async (req,res) => {
-    const username = req.body.username;
-    const password = req.body.password;
+//REGISTER
+router.post('/register', async (req,res) => {
+    const newUser = new User ({
+        username: req.body.username,
+        password: CryptoJS.AES.encrypt(req.body.username, process.env.SEC_PASS).toString()
+    });
+    
     try {
-        const users = await User.find({username, password});
-        //controllo dei dati
-    if(users.length > 0) {
-        res.sendFile(path.join(__dirname, '../src', '/merce.html'));
-    }else {
-        res.sendFile(path.join(__dirname, '../src', '/errore.html'));
+        const savedUser = await newUser.save();
+        res.status(200).json(savedUser);
+    } catch (err) {
+        res.status(500).json(err);
     }
-    } catch(e) {
-        console.log(e);
-    }
-    
 
-    
 });
+
+//LOGIN
+router.post('/login', async (req,res) => {
+    try {
+        
+    } catch (error) {
+        
+    }
+})
 
 module.exports = router;

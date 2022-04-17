@@ -2,7 +2,6 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const path = require('path');
-const CryptoJs = require('crypto-js');
 const dotenv = require('dotenv');
 const userRoute = require('./routes/auth.js');
 const indexRoute = require('./routes/index.js');
@@ -26,12 +25,14 @@ mongoose
     console.log(err);
 });
 
-const User = mongoose.model('User', {username: String, password: String});
 
 //route to login
-app.use('/user', userRoute);
+
 
 app.use('/', indexRoute);
+app.use('/user', userRoute)
+
+
 
 
 app.listen(PORT || 3000, () => {
