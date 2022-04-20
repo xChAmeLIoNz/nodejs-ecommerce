@@ -16,4 +16,9 @@ router.get('/user/register', (req,res) => {
 })
 
 
+router.get('/lavatrici', async (req,res) => {
+    const lavatrici = await product.findOne({title: "lavatrici"});
+    res.json(lavatrici.quantin)
+})
+
 module.exports = router;
