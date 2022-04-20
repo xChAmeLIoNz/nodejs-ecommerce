@@ -30,7 +30,7 @@ mongoose
 
 
 app.use('/', indexRoute);
-app.use('/user', userRoute)
+app.use('/api', userRoute)
 
 
 

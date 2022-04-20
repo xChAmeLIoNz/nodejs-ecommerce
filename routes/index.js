@@ -7,12 +7,13 @@ router.get('/', (req,res) => {
     res.sendFile(path.join(__dirname, '../src', '/index.html' ));
 });
 
-//TODO
+router.get('/user/login', (req,res) => {
+    res.sendFile(path.join(__dirname, '../src', '/login.html'));
+});
 
-//GET request to '' for register.html
-
-//GET request to '' for login.html
-
+router.get('/user/register', (req,res) => {
+    res.sendFile(path.join(__dirname, '../src', '/register.html'));
+})
 
 
 module.exports = router;

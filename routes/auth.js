@@ -10,12 +10,12 @@ const CryptoJS = require('crypto-js');
 router.post('/register', async (req,res) => {
     const newUser = new User ({
         username: req.body.username,
-        password: CryptoJS.AES.encrypt(req.body.username, process.env.SEC_PASS).toString()
+        password: CryptoJS.AES.encrypt(req.body.password, process.env.SEC_PASS).toString()
     });
     
     try {
         const savedUser = await newUser.save();
-        res.status(200).json(savedUser);
+        res.status(200).sendFile(path.join(__dirname, '../src', '/index.html'));
     } catch (err) {
         res.status(500).json(err);
     }
@@ -30,16 +30,17 @@ router.post('/login', async (req,res) => {
             res.status(400).json('Wrong USER credentials!');
         }
         const hashedPassword = CryptoJS.AES.decrypt(user.password, process.env.SEC_PASS);
-        const originalPassword = hashedPassword.toString(CryptoJS.enc.Utf8);//debug: fino a qua la psw viene decriptata correttamente (issue: IF ?)
+        const originalPassword = hashedPassword.toString(CryptoJS.enc.Utf8);
         console.log(originalPassword);
         if(originalPassword !== req.body.password) {
             return res.status(400).json('Wrong PASSWORD credentials!');
-        }
-        //U2FsdGVkX1+fwDANJral6p79qxV1o607DTXmZKRvBuw=  
+        } 
         
-        const { password, ...others} = user._doc;
-        return res.status(200).json(user);
+        //const { password, ...others} = user; 
+        //se provo a stampare il json con l'oggetto user (senza pswd, quindi "...others") non funziona, output = {}
+        //return res.status(200).json(...others); //2:13 AM FUNZIONA CAZZO
 
+        res.status(200).sendFile(path.join(__dirname, '../src', '/merce.html'));
     } catch (error) {
         res.status(500).json(error);                
     }
