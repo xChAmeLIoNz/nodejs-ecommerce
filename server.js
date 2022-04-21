@@ -5,6 +5,7 @@ const path = require('path');
 const dotenv = require('dotenv');
 const userRoute = require('./routes/auth.js');
 const indexRoute = require('./routes/index.js');
+const productRoute = require('./routes/product.js');
 
 dotenv.config();
 
@@ -30,7 +31,8 @@ mongoose
 
 
 app.use('/', indexRoute);
-app.use('/api', userRoute)
+app.use('/api', userRoute);
+app.use('/products', productRoute);
 
 
 

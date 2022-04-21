@@ -1,0 +1,11 @@
+HTML:
+-index.html
+-paginaErrore.html
+-carrello.html
+-shop.html
+
+JS:
+Schema for Cart
+Schema for Product
+
+
