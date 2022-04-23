@@ -5,7 +5,9 @@ HTML:
 -shop.html
 
 JS:
-Schema for Cart
-Schema for Product
+[x] Schema for Cart
+[x] Schema for Product
+[ ] Feauture per annullare gli ordini nel carrello
+[ ] Usare Fetch API per avere pagine HTML dinamiche e manipolazione DOM
 
 
