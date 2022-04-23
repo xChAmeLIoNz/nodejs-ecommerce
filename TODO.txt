@@ -3,7 +3,7 @@ HTML:
 -paginaErrore.html
 -carrello.html
 -shop.html
-
+-cart.html
 JS:
 [x] Schema for Cart
 [x] Schema for Product
