@@ -11,3 +11,25 @@ JS:
 [ ] Usare Fetch API per avere pagine HTML dinamiche e manipolazione DOM
 
 prova nick
+
+
+COME PUSHARE NELLA REPO REMOTA SU GITHUB:
+
+!!! Prima di tutto assicurarsi di avere tutti i file aggiornati nel proprio progetto usando il comando 'git pull origin master' !!!
+
+LISTA COMANDI IN ORDINE:
+
+1. $ > git status 
+---> controlliamo i file modificati/aggiunti da noi, per sicurezza (questo comando lo possiamo fare tutte le volte che vogliamo)
+
+2. $ > git add .        
+---> aggiungiamo le modifiche da committare (il punto significa TUTTO [come l'asterisco] )
+
+3. $ > git commit -m "messaggio-commit-coerente-pls"  
+---> eseguiamo la commit delle modifiche (-m ci permette di aggiungere il messaggio della commit, che non va mai tralasciato)
+
+4. $ > git push origin master 
+---> pushamo nella repo remota, dove 'origin = github' e 'master = branch dove lavoriamo'
+
+5. controllare se tutto è andato bene con ' git status '
+
