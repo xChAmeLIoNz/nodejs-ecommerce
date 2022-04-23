@@ -10,4 +10,4 @@ JS:
 [ ] Feauture per annullare gli ordini nel carrello
 [ ] Usare Fetch API per avere pagine HTML dinamiche e manipolazione DOM
 
-
+prova nick
