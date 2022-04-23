@@ -1,0 +1,17 @@
+per collegare cartella a github
+
+git clone "url"
+
+aggiornare cartella in locale
+
+git pull origin master (oppure main)
+
+
+
+per fare upload delle modifiche fatte
+
+git add .
+
+git commit -m "messaggio del commit"
+
+git push origin main (o master)
