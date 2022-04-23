@@ -1,0 +1,119 @@
+body{
+  background-color: #6495ED;
+  font-family: 'Roboto', sans-serif;
+}
+
+.signup-box{
+  width: 360px;
+  height: 352px;
+  margin: auto;
+  background-color: white;
+  border-radius: 3px;
+}
+
+.login-box{
+  width: 360px;
+  height: 352px;
+  margin: auto;
+  border-radius: 3px;
+  background-color: white;
+}
+
+#text{
+  text-align: center;
+  padding-top: 15px;
+  font-size: 40px;
+  font-family: 'Roboto', sans-serif;
+  color: #ffc107;
+}
+
+#text1{
+  text-align: center;
+  padding-top: 15px;
+  font-size: 40px;
+  font-family: 'Roboto', sans-serif;
+  color: #ffc107;
+}
+
+h1{
+
+  text-align: center;
+  padding-top: 15px;
+}
+
+h4{
+  text-align: center;
+}
+
+form{
+  width: 300px;
+  margin-left: 20px;
+}
+
+form label{
+  display: flex;
+  margin-top: 20px;
+  font-size: 18px;
+}
+
+form input{
+  width: 100%;
+  padding: 7px;
+  border: none;
+  border: 1px solid gray;
+  border-radius: 6px;
+  outline: none;
+}
+
+input[type="button"]{
+  width: 320px;
+  height: 35px;
+  margin-top: 20px;
+  border: none;
+  background-color: #2F4F4F;
+  color: white;
+  font-size: 18px;
+}
+
+p{
+  text-align: center;
+  padding-top: 20px;
+  font-size: 15px;
+}
+
+.para-2{
+  text-align: center;
+  color: white;
+  font-size: 15px;
+  margin-top: -10px;
+}
+
+.para-2 a{
+  color: #FFD700
+}
+
+
+
+h1, .h1 {
+  font-size: calc(1.375rem + 1.5vw); }
+  @media (min-width: 1200px) {
+    h1, .h1 {
+      font-size: 2.5rem; } }
+
+h2, .h2 {
+  font-size: calc(1.325rem + 0.9vw); }
+  @media (min-width: 1200px) {
+    h2, .h2 {
+      font-size: 2rem; } }
+
+h3, .h3 {
+  font-size: calc(1.3rem + 0.6vw); }
+  @media (min-width: 1200px) {
+    h3, .h3 {
+      font-size: 1.75rem; } }
+
+h4, .h4 {
+  font-size: calc(1.275rem + 0.3vw); }
+  @media (min-width: 1200px) {
+    h4, .h4 {
+      font-size: 1.5rem; } }
