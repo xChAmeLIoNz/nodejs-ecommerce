@@ -4,15 +4,15 @@ const path = require('path');
 
 //GET request to 'root' for index.html
 router.get('/', (req,res) => {
-    res.sendFile(path.join(__dirname, '../src', '/index.html' ));
+    res.sendFile(path.join(__dirname, '../html/templates', '/index.html' ));
 });
 
 router.get('/user/login', (req,res) => {
-    res.sendFile(path.join(__dirname, '../src', '/login.html'));
+    res.sendFile(path.join(__dirname, '../html/templates', '/login.html'));
 });
 
 router.get('/user/register', (req,res) => {
-    res.sendFile(path.join(__dirname, '../src', '/register.html'));
+    res.sendFile(path.join(__dirname, '../html/templates', '/register.html'));
 })
 
 /*

@@ -15,7 +15,7 @@ router.post('/register', async (req,res) => {
     
     try {
         const savedUser = await newUser.save();
-        res.status(200).sendFile(path.join(__dirname, '../src', '/index.html'));
+        res.status(200).sendFile(path.join(__dirname, '../src/templates', '/index.html'));
     } catch (err) {
         res.status(500).json(err);
     }
@@ -39,7 +39,7 @@ router.post('/login', async (req,res) => {
         //se provo a stampare il json con l'oggetto user (senza pswd, quindi "...others") non funziona, output = {}
         //return res.status(200).json(...others); //2:13 AM FUNZIONA CAZZO
 
-        res.status(200).sendFile(path.join(__dirname, '../src', '/merce.html'));
+        res.status(200).sendFile(path.join(__dirname, '../src/templates', '/merce.html'));
     } catch (error) {
         res.status(500).json(error);                
     }
