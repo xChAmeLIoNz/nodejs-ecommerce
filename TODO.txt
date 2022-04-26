@@ -9,8 +9,9 @@ JS:
 [x] Schema for Product
 [ ] Feauture per annullare gli ordini nel carrello
 [ ] Usare Fetch API per avere pagine HTML dinamiche e manipolazione DOM
+[ ] Utilizzare middleware cookie-parser (client) o JWT (server) per mantere una sessione per l'utente loggato
 
-prova nick
+
 
 
 COME PUSHARE NELLA REPO REMOTA SU GITHUB:
