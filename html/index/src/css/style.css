@@ -91,6 +91,15 @@ p{
 .para-2 a{
   color: #FFD700
 }
+.wrapper{
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.primo{
+  margin-top: 50px;
+}
 
 
 
