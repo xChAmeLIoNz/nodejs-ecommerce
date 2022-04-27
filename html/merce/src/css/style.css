@@ -1,15 +1,32 @@
+#header-container {
+  background-color: #0d6efd;
+  height: 120px;
+  justify-content: center;
+  border-color: #0d6efd;
+}
+
 h1 {
-  margin-top: 30px;
-  margin-bottom: 30px;
+  padding-top: 30px;
   text-align: center;
+  color: white;
 }
 
 .finale {
-  margin-top: 50px;
-  background-color: blue;
-  margin-left: 50px;
-  margin-right: 50px;
-  margin-bottom: 50px;
+  margin-bottom: 10px;
+}
+
+.carousel-caption h5 {
+  color: blue;
+  font-size: 50px;
+}
+.carousel-caption p {
+  color: blue;
+  font-weight: 600;
+}
+
+.carousel-item img {
+  height: 540px;
+  margin-left: 480px;
 }
 
 /*# sourceMappingURL=style.css.map */
