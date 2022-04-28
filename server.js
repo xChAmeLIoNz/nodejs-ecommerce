@@ -29,6 +29,7 @@ mongoose
 
 //route to login
 
+app.use('/static', express.static(path.join(__dirname, 'html', 'assets')));
 
 app.use('/', indexRoute);
 app.use('/api', userRoute);

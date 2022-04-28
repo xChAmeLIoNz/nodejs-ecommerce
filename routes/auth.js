@@ -46,7 +46,7 @@ router.post('/login', async (req,res) => {
         //se provo a stampare il json con l'oggetto user (senza pswd, quindi "...others") non funziona, output = {}
         //return res.status(200).json(...others); //2:13 AM FUNZIONA CAZZO
 
-        res.status(200).sendFile(path.join(__dirname, '../html/templates', '/merce.html'));
+        res.status(200).sendFile(path.join(__dirname, '../html/merce', '/merce.html'));
     } catch (error) {
         res.status(500).json(error);                
     }
