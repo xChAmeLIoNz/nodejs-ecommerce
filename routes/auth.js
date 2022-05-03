@@ -3,8 +3,15 @@ const path = require('path');
 const User = require('../models/User');
 const CryptoJS = require('crypto-js');
 //const bodyParser = require('body-parser');
-
 //router.use(bodyParser.json());
+
+const isAuth = (req,res,next) =>{
+    if(req.session.isAuth) {
+        next()
+    }else {
+        res.redirect('/user/login');
+    }
+}
 
 //REGISTER
 router.post('/register', async (req,res) => {
@@ -42,14 +49,25 @@ router.post('/login', async (req,res) => {
             return res.status(400).json('Wrong PASSWORD credentials!');
         } 
         
+        req.session.username = user.username;
+
         //const { password, ...others} = user; 
         //se provo a stampare il json con l'oggetto user (senza pswd, quindi "...others") non funziona, output = {}
         //return res.status(200).json(...others); //2:13 AM FUNZIONA CAZZO
 
-        res.status(200).sendFile(path.join(__dirname, '../html/merce', '/merce.html'));
+        res.status(200).sendFile(path.join(__dirname, '../html', '/merce.html'));
     } catch (error) {
         res.status(500).json(error);                
     }
-})
+});
+
+//LOGOUT
+router.get('/logout', (req,res) => {
+    if(!req.session.username) {
+        return res.status(400).json('non loggato');
+    }
+    req.session.destroy();
+    res.json('logged out successfully');
+});
 
 module.exports = router;

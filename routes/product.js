@@ -4,10 +4,12 @@ const Product = require('../models/Product.js');
 const Cart = require('../models/Cart.js');
 const User = require('../routes/auth');
 
-
-
 //AGGIUNTA AL CARRELLO
 router.get('/productName/:name', async (req,res) => {
+
+    if(!req.session.username) {
+        return res.status(400).json('non loggato');
+    }
 
     const selectedProduct = await Product.findOne({title: req.params.name});
     if(!selectedProduct) { 
@@ -21,13 +23,12 @@ router.get('/productName/:name', async (req,res) => {
 
     if(_count > quantita) {
         res.status(400).json("We don't have enough of that!");
-        console.log("here3")
-
     }else if (_count <= quantita) {
         const updatedQuantity = (quantita - _count);
+
         const newCart = new Cart(
             {
-                username: "utente",
+                username: req.session.username,
                 products: [
                     {
                         productName: selectedProduct.title,
@@ -35,6 +36,7 @@ router.get('/productName/:name', async (req,res) => {
                     }
                 ]                                
             }
+        
         );
 
         const savedCart = await newCart.save();

@@ -9,7 +9,8 @@ JS:
 [x] Schema for Product
 [ ] Feauture per annullare gli ordini nel carrello
 [ ] Usare Fetch API per avere pagine HTML dinamiche e manipolazione DOM
-[ ] Utilizzare middleware cookie-parser (client) o JWT (server) per mantere una sessione per l'utente loggato
+[x] Utilizzare middleware cookie-parser (server) o JWT (client) per mantere una sessione per l'utente loggato
+[ ] 
 
 
 
