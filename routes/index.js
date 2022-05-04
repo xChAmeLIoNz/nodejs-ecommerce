@@ -4,15 +4,24 @@ const path = require('path');
 
 //GET request to 'root' for index.html
 router.get('/', (req,res) => {
-    res.sendFile(path.join(__dirname, '../html/templates', '/index.html' ));
+    if(!req.session.username) {
+        return res.sendFile(path.join(__dirname, '../html', '/index.html' ));
+    }
+    res.sendFile(path.join(__dirname, '../html', '/logged-home.html' ));
 });
 
 router.get('/user/login', (req,res) => {
-    res.sendFile(path.join(__dirname, '../html/templates', '/login.html'));
+    if(!req.session.username) {
+        return res.sendFile(path.join(__dirname, '../html', '/login.html' ));
+    }
+    res.sendFile(path.join(__dirname, '../html', '/logged-home.html' ));
 });
 
 router.get('/user/register', (req,res) => {
-    res.sendFile(path.join(__dirname, '../html/templates', '/register.html'));
+    if(!req.session.username) {
+        return res.sendFile(path.join(__dirname, '../html', '/register.html' ));
+    }
+    res.sendFile(path.join(__dirname, '../html', '/logged-home.html'));
 })
 
 /*

@@ -5,10 +5,10 @@ const Cart = require('../models/Cart.js');
 const User = require('../routes/auth');
 
 //AGGIUNTA AL CARRELLO
-router.get('/productName/:name', async (req,res) => {
+router.post('/productName/:name', async (req,res) => {
 
     if(!req.session.username) {
-        return res.status(400).json('non loggato');
+        return res.status(400).sendFile(path.join(__dirname, '../html', '/non-logged.html'));
     }
 
     const selectedProduct = await Product.findOne({title: req.params.name});
@@ -22,8 +22,27 @@ router.get('/productName/:name', async (req,res) => {
     const _count = count ? count : 1;
 
     if(_count > quantita) {
-        res.status(400).json("We don't have enough of that!");
+        res.status(400).sendFile(path.join(__dirname, '../html', '/out-stock.html'));
     }else if (_count <= quantita) {
+
+        if(selectedProduct.title === 'cavo-HDMI') {
+            const newCart = new Cart(
+                {
+                    username: req.session.username,
+                    products: [
+                        {
+                            productName: selectedProduct.title,
+                            quantity: _count
+                        }
+                    ]                                
+                }
+            
+            );
+    
+            const savedCart = await newCart.save();
+            return res.status(200).sendFile(path.join(__dirname, '../html', '/cart.html'));
+        }
+
         const updatedQuantity = (quantita - _count);
 
         const newCart = new Cart(
@@ -44,11 +63,17 @@ router.get('/productName/:name', async (req,res) => {
         const updatedProduct = await selectedProduct.update({quantity: updatedQuantity}); 
         //METHOD UPDATE IS DEPRECATED, USE updateOne or updateMany instead
     
-        res.status(200).json("Item/s added to cart!");
+        res.status(200).sendFile(path.join(__dirname, '../html', '/cart.html'));
     }
-    
+      
+});
 
-    
+router.get('/merce', (req,res) => {
+    if(!req.session.username) {
+        return res.redirect('/user/login');
+    }
+    res.status(200).sendFile(path.join(__dirname, '../html', '/merce.html'));
+
 })
 
 module.exports = router;
