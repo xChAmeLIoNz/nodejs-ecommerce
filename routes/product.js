@@ -68,6 +68,25 @@ router.post('/productName/:name', async (req,res) => {
       
 });
 
+//BUY ITEMS AND DELETE CART
+router.post('/buy', async (req,res) => {
+    if(!req.session.username) {
+        return res.redirect('/user/login');
+    }
+
+    let carts = await Cart.find({});
+    if(carts.length < 1) {
+        return res.json('Non ci sono elementi nel carrello');
+    }
+    for(let i = 0; i < carts.length; i++) {
+        carts[i].remove();
+    }
+    
+
+    res.json('eliminato?');
+});
+
+//GETS THE SHOP HTML
 router.get('/merce', (req,res) => {
     if(!req.session.username) {
         return res.redirect('/user/login');

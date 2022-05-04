@@ -15,6 +15,9 @@ const isAuth = (req,res,next) =>{
 
 //REGISTER
 router.post('/register', async (req,res) => {
+    if(req.session.username) {
+        return res.status(200).sendFile(path.join(__dirname, '../html', '/logged-home.html'));
+    }
     const newUser = new User ({
         username: req.body.username,
         password: CryptoJS.AES.encrypt(req.body.password, process.env.SEC_PASS).toString()
@@ -38,6 +41,9 @@ router.post('/register', async (req,res) => {
 
 //LOGIN
 router.post('/login', async (req,res) => {
+    if(req.session.username) {
+        return res.status(200).sendFile(path.join(__dirname, '../html', '/logged-home.html'));
+    }
     try {
         const user = await User.findOne({username: req.body.username});
         if(!user) {
@@ -49,13 +55,13 @@ router.post('/login', async (req,res) => {
             return res.status(400).sendFile(path.join(__dirname, '../html', '/errore.html'));
         } 
         
-        req.session.username = user.username;
-
         //const { password, ...others} = user; 
         //se provo a stampare il json con l'oggetto user (senza pswd, quindi "...others") non funziona, output = {}
         //return res.status(200).json(...others); //2:13 AM FUNZIONA CAZZO
-
+        
+        req.session.username = user.username;
         res.status(200).sendFile(path.join(__dirname, '../html', '/logged-home.html'));
+
     } catch (error) {
         res.status(500).json(error);                
     }

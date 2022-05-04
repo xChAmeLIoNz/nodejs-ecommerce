@@ -19,7 +19,8 @@ router.get('/user/login', (req,res) => {
 
 router.get('/user/register', (req,res) => {
     if(!req.session.username) {
-        return res.sendFile(path.join(__dirname, '../html', '/register.html' ));
+        res.sendFile(path.join(__dirname, '../html', '/register.html' ));
+        return;
     }
     res.sendFile(path.join(__dirname, '../html', '/logged-home.html'));
 })
